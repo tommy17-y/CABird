@@ -27,10 +27,6 @@ enum Category {
 @property (nonatomic, retain) SKSpriteNode *ground1;
 @property (nonatomic, retain) SKSpriteNode *ground2;
 
-<<<<<<< HEAD
 @property (nonatomic, retain) NSTimer *timer;
-
-=======
->>>>>>> 87b9a17d545dcdf696db2c7b0421bc43a37953ed
 
 @end

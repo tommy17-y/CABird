@@ -269,14 +269,11 @@
 			files = (
 				B64F133618D6958C00E6403C /* InfoPlist.strings in Resources */,
 				B64F134918D6958C00E6403C /* Images.xcassets in Resources */,
-<<<<<<< HEAD
 				B64F137B18D6C7A400E6403C /* ground.png in Resources */,
 				B64F137A18D6C7A400E6403C /* logo.png in Resources */,
 				B64F137C18D6C7A400E6403C /* bird.png in Resources */,
 				B64F137918D6C7A400E6403C /* start.png in Resources */,
-=======
 				29C53DB218D6BCE4001CA551 /* dokan.png in Resources */,
->>>>>>> 87b9a17d545dcdf696db2c7b0421bc43a37953ed
 				B64F134718D6958C00E6403C /* Spaceship.png in Resources */,
 				B64F137D18D6C7A400E6403C /* background.png in Resources */,
 				B64F133F18D6958C00E6403C /* Main.storyboard in Resources */,

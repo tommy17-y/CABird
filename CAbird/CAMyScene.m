@@ -19,16 +19,6 @@
         self.physicsWorld.contactDelegate = self;
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
-//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-//        
-//        myLabel.text = @"Hello, World!";
-//        myLabel.fontSize = 30;
-//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-//                                       CGRectGetMidY(self.frame));
-//
-//        [self addChild:myLabel];
-        _size = size;
-        [self addBird];
         
 //        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
 //        
@@ -69,6 +59,10 @@
         _startButton.name = @"startButton";
         [self addChild:_startButton];
         
+        _size = size;
+        [self addBird];
+        [self addDokanAt:-40];
+        
     }
     return self;
 }
@@ -78,7 +72,7 @@
 -(void)addBird {
     CGPoint location = CGPointMake(_size.width/2, _size.height/2);
 
-    _bird = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+    _bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird.png"];
 
     _bird.size = CGSizeMake(_bird.size.width/4, _bird.size.height/4);
     _bird.position = location;
@@ -95,7 +89,6 @@
     _bird.physicsBody = body;
 
     [self addChild:_bird];
-    [self addDokanAt:-40];
 }
 
 
@@ -130,6 +123,7 @@
     dokanPair.position = CGPointMake(_size.width,0);
     [dokanPair runAction:[SKAction moveTo:CGPointMake(-DokanWidth, dokanPair.position.y) duration:2]];
     [self addChild:dokanPair];
+}
 
 -(void)updataDisplay {
     
@@ -176,6 +170,7 @@
                                                         selector:@selector(updataDisplay)
                                                         userInfo:nil
                                                          repeats:YES];
+    }
     _bird.physicsBody.velocity = CGVectorMake(0, 0);
     [_bird.physicsBody applyImpulse:CGVectorMake(0, 100)];
 }
