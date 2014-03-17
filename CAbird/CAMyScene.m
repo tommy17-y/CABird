@@ -24,7 +24,6 @@
 //                                       CGRectGetMidY(self.frame));
 //        
 //        [self addChild:myLabel];
-
         
         // 背景画像の設定
         SKSpriteNode *background = [[SKSpriteNode alloc] initWithImageNamed:@"background.png"];
@@ -44,11 +43,15 @@
         _ground2.position = CGPointMake(self.frame.size.width, 0);
         [self addChild:_ground2];
         
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.05f
-                                                          target:self
-                                                        selector:@selector(updataDisplay)
-                                                        userInfo:nil
-                                                         repeats:YES];
+        // スタートボタン
+        _startButton = [[SKSpriteNode alloc] initWithImageNamed:@"start.png"];
+        _startButton.anchorPoint = CGPointMake(0, 0);
+        _startButton.size = CGSizeMake(self.frame.size.width / 3,
+                                       self.frame.size.width / 6);
+        _startButton.position = CGPointMake((self.frame.size.width - _startButton.frame.size.width) / 2,
+                                            (self.frame.size.height - _startButton.frame.size.height) / 5);
+        _startButton.name = @"startButton";
+        [self addChild:_startButton];
         
     }
     return self;
@@ -84,6 +87,21 @@
 //        
 //        [self addChild:sprite];
 //    }
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+    
+    if(node != nil && [node.name isEqualToString:@"startButton"]) {
+        _startButton.hidden = YES;
+        
+        [_timer invalidate];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.05f
+                                                          target:self
+                                                        selector:@selector(updataDisplay)
+                                                        userInfo:nil
+                                                         repeats:YES];
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {

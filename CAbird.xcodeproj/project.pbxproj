@@ -24,9 +24,11 @@
 		B64F135218D6958D00E6403C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64F132D18D6958C00E6403C /* UIKit.framework */; };
 		B64F135A18D6958D00E6403C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B64F135818D6958D00E6403C /* InfoPlist.strings */; };
 		B64F135C18D6958D00E6403C /* CAbirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B64F135B18D6958D00E6403C /* CAbirdTests.m */; };
-		B64F136818D69DCC00E6403C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F136618D69DCC00E6403C /* background.png */; };
-		B64F136918D69DCC00E6403C /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F136718D69DCC00E6403C /* bird.png */; };
-		B64F136F18D6BAD500E6403C /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F136E18D6BAD500E6403C /* ground.png */; };
+		B64F137918D6C7A400E6403C /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F137418D6C7A400E6403C /* start.png */; };
+		B64F137A18D6C7A400E6403C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F137518D6C7A400E6403C /* logo.png */; };
+		B64F137B18D6C7A400E6403C /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F137618D6C7A400E6403C /* ground.png */; };
+		B64F137C18D6C7A400E6403C /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F137718D6C7A400E6403C /* bird.png */; };
+		B64F137D18D6C7A400E6403C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F137818D6C7A400E6403C /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,9 +65,11 @@
 		B64F135718D6958D00E6403C /* CAbirdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CAbirdTests-Info.plist"; sourceTree = "<group>"; };
 		B64F135918D6958D00E6403C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B64F135B18D6958D00E6403C /* CAbirdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAbirdTests.m; sourceTree = "<group>"; };
-		B64F136618D69DCC00E6403C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../../../Desktop/background.png; sourceTree = "<group>"; };
-		B64F136718D69DCC00E6403C /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bird.png; path = ../../../Desktop/bird.png; sourceTree = "<group>"; };
-		B64F136E18D6BAD500E6403C /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = ../../../Desktop/ground.png; sourceTree = "<group>"; };
+		B64F137418D6C7A400E6403C /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		B64F137518D6C7A400E6403C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		B64F137618D6C7A400E6403C /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
+		B64F137718D6C7A400E6403C /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
+		B64F137818D6C7A400E6403C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,9 +178,11 @@
 		B64F136518D69DB900E6403C /* img */ = {
 			isa = PBXGroup;
 			children = (
-				B64F136E18D6BAD500E6403C /* ground.png */,
-				B64F136618D69DCC00E6403C /* background.png */,
-				B64F136718D69DCC00E6403C /* bird.png */,
+				B64F137418D6C7A400E6403C /* start.png */,
+				B64F137518D6C7A400E6403C /* logo.png */,
+				B64F137618D6C7A400E6403C /* ground.png */,
+				B64F137718D6C7A400E6403C /* bird.png */,
+				B64F137818D6C7A400E6403C /* background.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -259,11 +265,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B64F133618D6958C00E6403C /* InfoPlist.strings in Resources */,
-				B64F136818D69DCC00E6403C /* background.png in Resources */,
-				B64F136F18D6BAD500E6403C /* ground.png in Resources */,
-				B64F136918D69DCC00E6403C /* bird.png in Resources */,
 				B64F134918D6958C00E6403C /* Images.xcassets in Resources */,
+				B64F137B18D6C7A400E6403C /* ground.png in Resources */,
+				B64F137A18D6C7A400E6403C /* logo.png in Resources */,
+				B64F137C18D6C7A400E6403C /* bird.png in Resources */,
+				B64F137918D6C7A400E6403C /* start.png in Resources */,
 				B64F134718D6958C00E6403C /* Spaceship.png in Resources */,
+				B64F137D18D6C7A400E6403C /* background.png in Resources */,
 				B64F133F18D6958C00E6403C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
