@@ -186,6 +186,23 @@
     if (_ground2.position.x <= -self.frame.size.width) {
         _ground2.position = CGPointMake(self.frame.size.width, 0);
     }
+
+    if (_previousTime) {
+        CFTimeInterval dt = currentTime - _previousTime;
+        // generate dokan
+        _dokanTimer += dt;
+        if (_dokanTimer >= 1) {
+            int minY = -50;
+            int maxY = 50;
+            int rangeY = maxY - minY;
+            int height = arc4random() % rangeY + minY;
+
+            [self addDokanAt: height];
+            _dokanTimer = 0;
+        }
+
+    }
+    _previousTime = currentTime;
 }
 
 @end

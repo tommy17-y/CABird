@@ -23,6 +23,8 @@ enum Category {
     NSMutableArray* _dokans;
     CGSize _size;
     BOOL _started;
+    CFTimeInterval _dokanTimer;
+    CFTimeInterval _previousTime;
 }
 
 @property (nonatomic, retain) SKSpriteNode *startButton;
