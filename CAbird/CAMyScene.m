@@ -13,24 +13,11 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        self.scaleMode = SKSceneScaleModeAspectFit;
-        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-        self.physicsWorld.gravity = CGVectorMake(0, -2);
+        self.physicsWorld.gravity = CGVectorMake(0, -5);
         self.physicsWorld.contactDelegate = self;
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
-        
-//        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-//        
-//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-//        
-//        myLabel.text = @"Hello, World!";
-//        myLabel.fontSize = 30;
-//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-//                                       CGRectGetMidY(self.frame));
-//        
-//        [self addChild:myLabel];
-        
+
         // 背景画像の設定
         SKSpriteNode *background = [[SKSpriteNode alloc] initWithImageNamed:@"background.png"];
         background.anchorPoint = CGPointMake(0,0);
@@ -42,11 +29,24 @@
         _ground1.anchorPoint = CGPointMake(0, 0);
         _ground1.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
         _ground1.position = CGPointMake(0, 0);
+        SKPhysicsBody* body1 = [SKPhysicsBody bodyWithRectangleOfSize:_ground1.size];
+        body1.dynamic = NO;
+        body1.restitution = 1;
+        body1.categoryBitMask = GroundCategory;
+        body1.contactTestBitMask = BirdCategory;
+        _bird.physicsBody = body1;
         [self addChild:_ground1];
+
         _ground2 = [[SKSpriteNode alloc] initWithImageNamed:@"ground.png"];
         _ground2.anchorPoint = CGPointMake(0, 0);
         _ground2.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
         _ground2.position = CGPointMake(self.frame.size.width, 0);
+        SKPhysicsBody* body2 = [SKPhysicsBody bodyWithRectangleOfSize:_ground2.size];
+        body2.dynamic = NO;
+        body2.restitution = 1;
+        body2.categoryBitMask = GroundCategory;
+        body2.contactTestBitMask = BirdCategory;
+        _ground1.physicsBody = body2;
         [self addChild:_ground2];
         
         // スタートボタン
@@ -74,7 +74,7 @@
 
     _bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird.png"];
 
-    _bird.size = CGSizeMake(_bird.size.width/4, _bird.size.height/4);
+//    _bird.size = CGSizeMake(_bird.size.width/4, _bird.size.height/4);
     _bird.position = location;
 
     SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
@@ -85,7 +85,7 @@
     SKPhysicsBody* body = [SKPhysicsBody bodyWithRectangleOfSize:_bird.size]; // 1
     body.restitution = 1;
     body.categoryBitMask = BirdCategory;
-    body.contactTestBitMask = DokanCategory;
+    body.contactTestBitMask = DokanCategory|GroundCategory;
     _bird.physicsBody = body;
 
     [self addChild:_bird];
@@ -142,21 +142,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
-//    for (UITouch *touch in touches) {
-//        CGPoint location = [touch locationInNode:self];
-//        
-//        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-//        
-//        sprite.position = location;
-//        
-//        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-//        
-//        [sprite runAction:[SKAction repeatActionForever:action]];
-//        
-//        [self addChild:sprite];
-//    }
-    
+
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
@@ -172,7 +158,7 @@
                                                          repeats:YES];
     }
     _bird.physicsBody.velocity = CGVectorMake(0, 0);
-    [_bird.physicsBody applyImpulse:CGVectorMake(0, 100)];
+    [_bird.physicsBody applyImpulse:CGVectorMake(0, 30)];
 }
 
 -(void)didBeginContact:(SKPhysicsContact *)contact {
@@ -186,8 +172,9 @@
         secondBody = contact.bodyA;
     }
 
+
     if (firstBody.categoryBitMask & BirdCategory) {
-        if (secondBody.categoryBitMask & DokanCategory) {
+        if (secondBody.categoryBitMask & (DokanCategory|GroundCategory)) {
             NSLog(@"contact!");
         }
     }
@@ -196,6 +183,8 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     _bird.zRotation = 0;
+    _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
+    _bird.position = CGPointMake(_size.width/4, _bird.position.y);
 }
 
 @end

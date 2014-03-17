@@ -9,9 +9,11 @@
 #import <SpriteKit/SpriteKit.h>
 
 #define DokanWidth 108
+
 enum Category {
     BirdCategory = 1,
-    DokanCategory = 2
+    DokanCategory = 2,
+    GroundCategory = 4
 };
 
 
