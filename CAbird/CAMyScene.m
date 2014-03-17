@@ -169,12 +169,16 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
     
-    if(node != nil && [node.name isEqualToString:@"startButton"]) {
+    if(node != nil && [node.name isEqualToString:@"startButton"] && !_startButton.hidden) {
         _startButton.hidden = YES;
         _logo.hidden = YES;
         gameOverFlag = 0;
         _bird.physicsBody.dynamic = YES;
         _started = YES;
+        _bird.zRotation = 0;
+        _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
+        _bird.position = CGPointMake(_size.width/4, _size.height/2);
+        _score = 0;
     }
     
     _bird.physicsBody.velocity = CGVectorMake(0, 0);
