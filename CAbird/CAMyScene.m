@@ -14,36 +14,76 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+//        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+//        
+//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+//        
+//        myLabel.text = @"Hello, World!";
+//        myLabel.fontSize = 30;
+//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+//                                       CGRectGetMidY(self.frame));
+//        
+//        [self addChild:myLabel];
+
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        // 背景画像の設定
+        SKSpriteNode *background = [[SKSpriteNode alloc] initWithImageNamed:@"background.png"];
+        background.anchorPoint = CGPointMake(0,0);
+        background.size = self.frame.size;
+        [self addChild:background];
+
+        // 左に流れる地面の設定
+        _ground1 = [[SKSpriteNode alloc] initWithImageNamed:@"ground.png"];
+        _ground1.anchorPoint = CGPointMake(0, 0);
+        _ground1.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
+        _ground1.position = CGPointMake(0, 0);
+        [self addChild:_ground1];
+        _ground2 = [[SKSpriteNode alloc] initWithImageNamed:@"ground.png"];
+        _ground2.anchorPoint = CGPointMake(0, 0);
+        _ground2.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
+        _ground2.position = CGPointMake(self.frame.size.width, 0);
+        [self addChild:_ground2];
         
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.05f
+                                                          target:self
+                                                        selector:@selector(updataDisplay)
+                                                        userInfo:nil
+                                                         repeats:YES];
         
-        [self addChild:myLabel];
     }
     return self;
+}
+
+-(void)updataDisplay {
+    
+    _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
+    _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
+    
+    if (_ground2.position.x == 0) {
+        _ground1.position = CGPointMake(self.frame.size.width, 0);
+    }
+    if (_ground1.position.x == 0) {
+        _ground2.position = CGPointMake(self.frame.size.width, 0);
+    }
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
+//    for (UITouch *touch in touches) {
+//        CGPoint location = [touch locationInNode:self];
+//        
+//        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+//        
+//        sprite.position = location;
+//        
+//        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+//        
+//        [sprite runAction:[SKAction repeatActionForever:action]];
+//        
+//        [self addChild:sprite];
+//    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {

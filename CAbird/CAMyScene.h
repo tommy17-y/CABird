@@ -10,4 +10,7 @@
 
 @interface CAMyScene : SKScene
 
+@property (nonatomic, retain) SKSpriteNode *ground1;
+@property (nonatomic, retain) SKSpriteNode *ground2;
+
 @end
