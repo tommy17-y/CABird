@@ -92,6 +92,7 @@
 
 
     SKPhysicsBody* body = [SKPhysicsBody bodyWithRectangleOfSize:_bird.size]; // 1
+    body.dynamic = NO;
     body.restitution = 1;
     body.categoryBitMask = BirdCategory;
     body.contactTestBitMask = DokanCategory|GroundCategory;
@@ -144,7 +145,7 @@
     if(node != nil && [node.name isEqualToString:@"startButton"]) {
         _startButton.hidden = YES;
         _logo.hidden = YES;
-        
+        _bird.physicsBody.dynamic = YES;
     }
     
     _bird.physicsBody.velocity = CGVectorMake(0, 0);
@@ -179,13 +180,12 @@
     _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
     _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
     
-    if (_ground2.position.x == 0) {
+    if (_ground1.position.x <= -self.frame.size.width) {
         _ground1.position = CGPointMake(self.frame.size.width, 0);
     }
-    if (_ground1.position.x == 0) {
+    if (_ground2.position.x <= -self.frame.size.width) {
         _ground2.position = CGPointMake(self.frame.size.width, 0);
     }
-
 }
 
 @end

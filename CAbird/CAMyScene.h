@@ -22,6 +22,7 @@ enum Category {
     SKSpriteNode* _bird;
     NSMutableArray* _dokans;
     CGSize _size;
+    BOOL _started;
 }
 
 @property (nonatomic, retain) SKSpriteNode *startButton;
