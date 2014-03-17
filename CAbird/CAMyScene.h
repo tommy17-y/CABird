@@ -25,6 +25,7 @@ enum Category {
 }
 
 @property (nonatomic, retain) SKSpriteNode *startButton;
+@property (nonatomic, retain) SKSpriteNode *logo;
 
 @property (nonatomic, retain) SKSpriteNode *ground1;
 @property (nonatomic, retain) SKSpriteNode *ground2;

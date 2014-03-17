@@ -58,7 +58,16 @@
                                             (self.frame.size.height - _startButton.frame.size.height) / 5);
         _startButton.name = @"startButton";
         [self addChild:_startButton];
-        
+
+        // ロゴ
+        _logo = [[SKSpriteNode alloc] initWithImageNamed:@"logo.png"];
+        _logo.anchorPoint = CGPointMake(0, 0);
+        _logo.size = CGSizeMake(self.frame.size.width / 1.5,
+                                       self.frame.size.width / 5);
+        _logo.position = CGPointMake((self.frame.size.width - _logo.frame.size.width) / 2,
+                                     (self.frame.size.height - _logo.frame.size.height) / 5 * 3);
+        [self addChild:_logo];
+
         _size = size;
         [self addBird];
         [self addDokanAt:-40];
@@ -125,21 +134,6 @@
     [self addChild:dokanPair];
 }
 
--(void)updataDisplay {
-    
-    _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
-    _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
-    
-    if (_ground2.position.x == 0) {
-        _ground1.position = CGPointMake(self.frame.size.width, 0);
-    }
-    if (_ground1.position.x == 0) {
-        _ground2.position = CGPointMake(self.frame.size.width, 0);
-    }
-    
-
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
 
@@ -149,14 +143,10 @@
     
     if(node != nil && [node.name isEqualToString:@"startButton"]) {
         _startButton.hidden = YES;
+        _logo.hidden = YES;
         
-        [_timer invalidate];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.05f
-                                                          target:self
-                                                        selector:@selector(updataDisplay)
-                                                        userInfo:nil
-                                                         repeats:YES];
     }
+    
     _bird.physicsBody.velocity = CGVectorMake(0, 0);
     [_bird.physicsBody applyImpulse:CGVectorMake(0, 30)];
 }
@@ -185,6 +175,17 @@
     _bird.zRotation = 0;
     _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
     _bird.position = CGPointMake(_size.width/4, _bird.position.y);
+    
+    _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
+    _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
+    
+    if (_ground2.position.x == 0) {
+        _ground1.position = CGPointMake(self.frame.size.width, 0);
+    }
+    if (_ground1.position.x == 0) {
+        _ground2.position = CGPointMake(self.frame.size.width, 0);
+    }
+
 }
 
 @end
