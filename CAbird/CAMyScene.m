@@ -17,6 +17,8 @@
         self.physicsWorld.contactDelegate = self;
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
+        gameOverFlag = 0;
+        
 
         // 背景画像の設定
         SKSpriteNode *background = [[SKSpriteNode alloc] initWithImageNamed:@"background.png"];
@@ -82,16 +84,31 @@
         [self addBird];
         _started = NO;
         
+        [NSTimer scheduledTimerWithTimeInterval:0.1f
+                                         target:self
+                                       selector:@selector(changeBird)
+                                       userInfo:nil
+                                        repeats:YES];
+        
     }
     return self;
 }
 
-
+- (void)changeBird {
+    if (birdImgFlag == 0) {
+        _bird.texture = [SKTexture textureWithImageNamed:@"bird2.png"];
+        birdImgFlag = 1;
+    } else {
+        _bird.texture = [SKTexture textureWithImageNamed:@"bird.png"];
+        birdImgFlag = 0;
+    }
+}
 
 -(void)addBird {
     CGPoint location = CGPointMake(_size.width/2, _size.height/2);
 
     _bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird.png"];
+    birdImgFlag = 0;
 
 //    _bird.size = CGSizeMake(_bird.size.width/4, _bird.size.height/4);
     _bird.position = location;
@@ -155,6 +172,7 @@
     if(node != nil && [node.name isEqualToString:@"startButton"]) {
         _startButton.hidden = YES;
         _logo.hidden = YES;
+        gameOverFlag = 0;
         _bird.physicsBody.dynamic = YES;
         _started = YES;
     }
@@ -178,31 +196,35 @@
     if (firstBody.categoryBitMask & BirdCategory) {
         if (secondBody.categoryBitMask & (DokanCategory|GroundCategory)) {
             NSLog(@"contact!");
+            _logo.hidden = NO;
+            _startButton.hidden = NO;
+            gameOverFlag = 1;
         }
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    _bird.zRotation = 0;
-    _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
-    _bird.position = CGPointMake(_size.width/4, _bird.position.y);
+
+    if (gameOverFlag == 0){
+        _bird.zRotation = 0;
+        _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
+        _bird.position = CGPointMake(_size.width/4, _bird.position.y);
     
-    _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
-    _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
-    
+        _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
+        _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
+    }
+
     if (_ground1.position.x <= -self.frame.size.width) {
         _ground1.position = CGPointMake(self.frame.size.width, 0);
     }
     if (_ground2.position.x <= -self.frame.size.width) {
         _ground2.position = CGPointMake(self.frame.size.width, 0);
     }
+
     _scoreLabel.text = [NSString stringWithFormat:@"%d", MAX(_score-1,0)];
 
     if (_started) {
-//        if (_startTime == 0) {
-//            _startTime = currentTime;
-//        }
         CFTimeInterval dt = currentTime - _previousTime;
         // generate dokan
         _dokanTimer += dt;
@@ -216,9 +238,8 @@
             [self addDokanAt: height];
             _dokanTimer = 0;
         }
-
+        _previousTime = currentTime;
     }
-    _previousTime = currentTime;
 }
 
 @end
