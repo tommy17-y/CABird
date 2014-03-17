@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29C53DB218D6BCE4001CA551 /* dokan.png in Resources */ = {isa = PBXBuildFile; fileRef = 29C53DB118D6BCE4001CA551 /* dokan.png */; };
 		B64F132A18D6958C00E6403C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64F132918D6958C00E6403C /* Foundation.framework */; };
 		B64F132C18D6958C00E6403C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64F132B18D6958C00E6403C /* CoreGraphics.framework */; };
 		B64F132E18D6958C00E6403C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64F132D18D6958C00E6403C /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		29C53DB118D6BCE4001CA551 /* dokan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dokan.png; sourceTree = "<group>"; };
 		B64F132618D6958C00E6403C /* CAbird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAbird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64F132918D6958C00E6403C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B64F132B18D6958C00E6403C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +142,7 @@
 				B64F134418D6958C00E6403C /* CAMyScene.m */,
 				B64F134618D6958C00E6403C /* Spaceship.png */,
 				B64F134818D6958C00E6403C /* Images.xcassets */,
+				29C53DB118D6BCE4001CA551 /* dokan.png */,
 				B64F133218D6958C00E6403C /* Supporting Files */,
 			);
 			path = CAbird;
@@ -266,10 +269,14 @@
 			files = (
 				B64F133618D6958C00E6403C /* InfoPlist.strings in Resources */,
 				B64F134918D6958C00E6403C /* Images.xcassets in Resources */,
+<<<<<<< HEAD
 				B64F137B18D6C7A400E6403C /* ground.png in Resources */,
 				B64F137A18D6C7A400E6403C /* logo.png in Resources */,
 				B64F137C18D6C7A400E6403C /* bird.png in Resources */,
 				B64F137918D6C7A400E6403C /* start.png in Resources */,
+=======
+				29C53DB218D6BCE4001CA551 /* dokan.png in Resources */,
+>>>>>>> 87b9a17d545dcdf696db2c7b0421bc43a37953ed
 				B64F134718D6958C00E6403C /* Spaceship.png in Resources */,
 				B64F137D18D6C7A400E6403C /* background.png in Resources */,
 				B64F133F18D6958C00E6403C /* Main.storyboard in Resources */,
