@@ -17,6 +17,8 @@
         self.physicsWorld.contactDelegate = self;
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
+        gameOverFlag = 0;
+        
 
         // 背景画像の設定
         SKSpriteNode *background = [[SKSpriteNode alloc] initWithImageNamed:@"background.png"];
@@ -160,6 +162,7 @@
     if(node != nil && [node.name isEqualToString:@"startButton"]) {
         _startButton.hidden = YES;
         _logo.hidden = YES;
+        gameOverFlag = 0;
         _bird.physicsBody.dynamic = YES;
     }
     
@@ -184,42 +187,45 @@
             NSLog(@"contact!");
             _logo.hidden = NO;
             _startButton.hidden = NO;
+            gameOverFlag = 1;
         }
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    _bird.zRotation = 0;
-    _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
-    _bird.position = CGPointMake(_size.width/4, _bird.position.y);
-    
-    _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
-    _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
-    
-    if (_ground1.position.x <= -self.frame.size.width) {
-        _ground1.position = CGPointMake(self.frame.size.width, 0);
-    }
-    if (_ground2.position.x <= -self.frame.size.width) {
-        _ground2.position = CGPointMake(self.frame.size.width, 0);
-    }
 
-    if (_previousTime) {
-        CFTimeInterval dt = currentTime - _previousTime;
-        // generate dokan
-        _dokanTimer += dt;
-        if (_dokanTimer >= 1) {
-            int minY = -50;
-            int maxY = 50;
-            int rangeY = maxY - minY;
-            int height = arc4random() % rangeY + minY;
-
-            [self addDokanAt: height];
-            _dokanTimer = 0;
+    if (gameOverFlag == 0){
+        _bird.zRotation = 0;
+        _bird.physicsBody.velocity = CGVectorMake(0, _bird.physicsBody.velocity.dy);
+        _bird.position = CGPointMake(_size.width/4, _bird.position.y);
+    
+        _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
+        _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
+    
+        if (_ground1.position.x <= -self.frame.size.width) {
+            _ground1.position = CGPointMake(self.frame.size.width, 0);
+        }
+        if (_ground2.position.x <= -self.frame.size.width) {
+            _ground2.position = CGPointMake(self.frame.size.width, 0);
         }
 
+        if (_previousTime) {
+            CFTimeInterval dt = currentTime - _previousTime;
+            // generate dokan
+            _dokanTimer += dt;
+            if (_dokanTimer >= 1) {
+                int minY = -50;
+                int maxY = 50;
+                int rangeY = maxY - minY;
+                int height = arc4random() % rangeY + minY;
+
+                [self addDokanAt: height];
+                _dokanTimer = 0;
+            }
+        }
+        _previousTime = currentTime;
     }
-    _previousTime = currentTime;
 }
 
 @end
