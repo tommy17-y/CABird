@@ -25,6 +25,7 @@ enum Category {
     BOOL _started;
     CFTimeInterval _dokanTimer;
     CFTimeInterval _previousTime;
+    int birdImgFlag;
 }
 
 @property (nonatomic, retain) SKSpriteNode *startButton;

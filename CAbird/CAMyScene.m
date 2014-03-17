@@ -72,16 +72,31 @@
         [self addBird];
         [self addDokanAt:-40];
         
+        [NSTimer scheduledTimerWithTimeInterval:0.1f
+                                         target:self
+                                       selector:@selector(changeBird)
+                                       userInfo:nil
+                                        repeats:YES];
+        
     }
     return self;
 }
 
-
+- (void)changeBird {
+    if (birdImgFlag == 0) {
+        _bird.texture = [SKTexture textureWithImageNamed:@"bird2.png"];
+        birdImgFlag = 1;
+    } else {
+        _bird.texture = [SKTexture textureWithImageNamed:@"bird.png"];
+        birdImgFlag = 0;
+    }
+}
 
 -(void)addBird {
     CGPoint location = CGPointMake(_size.width/2, _size.height/2);
 
     _bird = [SKSpriteNode spriteNodeWithImageNamed:@"bird.png"];
+    birdImgFlag = 0;
 
 //    _bird.size = CGSizeMake(_bird.size.width/4, _bird.size.height/4);
     _bird.position = location;
@@ -167,6 +182,8 @@
     if (firstBody.categoryBitMask & BirdCategory) {
         if (secondBody.categoryBitMask & (DokanCategory|GroundCategory)) {
             NSLog(@"contact!");
+            _logo.hidden = NO;
+            _startButton.hidden = NO;
         }
     }
 }
