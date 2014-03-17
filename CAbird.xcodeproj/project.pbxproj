@@ -25,6 +25,9 @@
 		B64F135218D6958D00E6403C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B64F132D18D6958C00E6403C /* UIKit.framework */; };
 		B64F135A18D6958D00E6403C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B64F135818D6958D00E6403C /* InfoPlist.strings */; };
 		B64F135C18D6958D00E6403C /* CAbirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B64F135B18D6958D00E6403C /* CAbirdTests.m */; };
+		B64F136818D69DCC00E6403C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F136618D69DCC00E6403C /* background.png */; };
+		B64F136918D69DCC00E6403C /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F136718D69DCC00E6403C /* bird.png */; };
+		B64F136F18D6BAD500E6403C /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = B64F136E18D6BAD500E6403C /* ground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		B64F135718D6958D00E6403C /* CAbirdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CAbirdTests-Info.plist"; sourceTree = "<group>"; };
 		B64F135918D6958D00E6403C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B64F135B18D6958D00E6403C /* CAbirdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAbirdTests.m; sourceTree = "<group>"; };
+		B64F136618D69DCC00E6403C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../../../Desktop/background.png; sourceTree = "<group>"; };
+		B64F136718D69DCC00E6403C /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bird.png; path = ../../../Desktop/bird.png; sourceTree = "<group>"; };
+		B64F136E18D6BAD500E6403C /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = ../../../Desktop/ground.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 		B64F133218D6958C00E6403C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B64F136518D69DB900E6403C /* img */,
 				B64F133318D6958C00E6403C /* CAbird-Info.plist */,
 				B64F133418D6958C00E6403C /* InfoPlist.strings */,
 				B64F133718D6958C00E6403C /* main.m */,
@@ -165,6 +172,16 @@
 				B64F135818D6958D00E6403C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B64F136518D69DB900E6403C /* img */ = {
+			isa = PBXGroup;
+			children = (
+				B64F136E18D6BAD500E6403C /* ground.png */,
+				B64F136618D69DCC00E6403C /* background.png */,
+				B64F136718D69DCC00E6403C /* bird.png */,
+			);
+			name = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +262,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B64F133618D6958C00E6403C /* InfoPlist.strings in Resources */,
+				B64F136818D69DCC00E6403C /* background.png in Resources */,
+				B64F136F18D6BAD500E6403C /* ground.png in Resources */,
+				B64F136918D69DCC00E6403C /* bird.png in Resources */,
 				B64F134918D6958C00E6403C /* Images.xcassets in Resources */,
 				29C53DB218D6BCE4001CA551 /* dokan.png in Resources */,
 				B64F134718D6958C00E6403C /* Spaceship.png in Resources */,

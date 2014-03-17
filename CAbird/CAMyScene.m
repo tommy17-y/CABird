@@ -13,7 +13,6 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-
         self.scaleMode = SKSceneScaleModeAspectFit;
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         self.physicsWorld.gravity = CGVectorMake(0, -2);
@@ -30,9 +29,47 @@
 //        [self addChild:myLabel];
         _size = size;
         [self addBird];
+        
+//        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+//        
+//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+//        
+//        myLabel.text = @"Hello, World!";
+//        myLabel.fontSize = 30;
+//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+//                                       CGRectGetMidY(self.frame));
+//        
+//        [self addChild:myLabel];
+
+        
+        // 背景画像の設定
+        SKSpriteNode *background = [[SKSpriteNode alloc] initWithImageNamed:@"background.png"];
+        background.anchorPoint = CGPointMake(0,0);
+        background.size = self.frame.size;
+        [self addChild:background];
+
+        // 左に流れる地面の設定
+        _ground1 = [[SKSpriteNode alloc] initWithImageNamed:@"ground.png"];
+        _ground1.anchorPoint = CGPointMake(0, 0);
+        _ground1.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
+        _ground1.position = CGPointMake(0, 0);
+        [self addChild:_ground1];
+        _ground2 = [[SKSpriteNode alloc] initWithImageNamed:@"ground.png"];
+        _ground2.anchorPoint = CGPointMake(0, 0);
+        _ground2.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
+        _ground2.position = CGPointMake(self.frame.size.width, 0);
+        [self addChild:_ground2];
+        
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.05f
+                                                          target:self
+                                                        selector:@selector(updataDisplay)
+                                                        userInfo:nil
+                                                         repeats:YES];
+
     }
     return self;
 }
+
 
 
 -(void)addBird {
@@ -90,6 +127,20 @@
     dokanPair.position = CGPointMake(_size.width,0);
     [dokanPair runAction:[SKAction moveTo:CGPointMake(-DokanWidth, dokanPair.position.y) duration:2]];
     [self addChild:dokanPair];
+
+-(void)updataDisplay {
+    
+    _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
+    _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
+    
+    if (_ground2.position.x == 0) {
+        _ground1.position = CGPointMake(self.frame.size.width, 0);
+    }
+    if (_ground1.position.x == 0) {
+        _ground2.position = CGPointMake(self.frame.size.width, 0);
+    }
+    
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

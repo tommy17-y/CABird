@@ -14,10 +14,16 @@ enum Category {
     DokanCategory = 2
 };
 
+
 @interface CAMyScene : SKScene<SKPhysicsContactDelegate>
 {
     SKSpriteNode* _bird;
     NSMutableArray* _dokans;
     CGSize _size;
 }
+
+@property (nonatomic, retain) SKSpriteNode *ground1;
+@property (nonatomic, retain) SKSpriteNode *ground2;
+
+
 @end
