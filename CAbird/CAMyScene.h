@@ -8,6 +8,16 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface CAMyScene : SKScene
+#define DokanWidth 108
+enum Category {
+    BirdCategory = 1,
+    DokanCategory = 2
+};
 
+@interface CAMyScene : SKScene<SKPhysicsContactDelegate>
+{
+    SKSpriteNode* _bird;
+    NSMutableArray* _dokans;
+    CGSize _size;
+}
 @end
