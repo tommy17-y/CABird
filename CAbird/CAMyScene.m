@@ -29,6 +29,7 @@
         _ground1.anchorPoint = CGPointMake(0, 0);
         _ground1.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
         _ground1.position = CGPointMake(0, 0);
+        _ground1.zPosition = 10;
         SKPhysicsBody* body1 = [SKPhysicsBody bodyWithRectangleOfSize:_ground1.size];
         body1.dynamic = NO;
         body1.restitution = 1;
@@ -41,6 +42,7 @@
         _ground2.anchorPoint = CGPointMake(0, 0);
         _ground2.size = CGSizeMake(self.frame.size.width, self.frame.size.height / 666 * 147);
         _ground2.position = CGPointMake(self.frame.size.width, 0);
+        _ground2.zPosition = 10;
         SKPhysicsBody* body2 = [SKPhysicsBody bodyWithRectangleOfSize:_ground2.size];
         body2.dynamic = NO;
         body2.restitution = 1;
@@ -56,6 +58,7 @@
                                        self.frame.size.width / 6);
         _startButton.position = CGPointMake((self.frame.size.width - _startButton.frame.size.width) / 2,
                                             (self.frame.size.height - _startButton.frame.size.height) / 5);
+        _startButton.zPosition = 20;
         _startButton.name = @"startButton";
         [self addChild:_startButton];
 
@@ -68,9 +71,16 @@
                                      (self.frame.size.height - _logo.frame.size.height) / 5 * 3);
         [self addChild:_logo];
 
+        // スコア
+        _scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        _scoreLabel.fontSize = 40;
+        _scoreLabel.fontColor = [SKColor blackColor];
+        _scoreLabel.position = CGPointMake(self.size.width/2, self.size.height*3/4);
+        [self addChild:_scoreLabel];
+
         _size = size;
         [self addBird];
-        [self addDokanAt:-40];
+        _started = NO;
         
     }
     return self;
@@ -146,6 +156,7 @@
         _startButton.hidden = YES;
         _logo.hidden = YES;
         _bird.physicsBody.dynamic = YES;
+        _started = YES;
     }
     
     _bird.physicsBody.velocity = CGVectorMake(0, 0);
@@ -186,14 +197,19 @@
     if (_ground2.position.x <= -self.frame.size.width) {
         _ground2.position = CGPointMake(self.frame.size.width, 0);
     }
+    _scoreLabel.text = [NSString stringWithFormat:@"%d", MAX(_score-1,0)];
 
-    if (_previousTime) {
+    if (_started) {
+//        if (_startTime == 0) {
+//            _startTime = currentTime;
+//        }
         CFTimeInterval dt = currentTime - _previousTime;
         // generate dokan
         _dokanTimer += dt;
         if (_dokanTimer >= 1) {
-            int minY = -50;
-            int maxY = 50;
+            _score++;
+            int minY = 20;
+            int maxY = 200;
             int rangeY = maxY - minY;
             int height = arc4random() % rangeY + minY;
 
