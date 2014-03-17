@@ -213,7 +213,6 @@
     
         _ground1.position = CGPointMake(_ground1.position.x - 2, 0);
         _ground2.position = CGPointMake(_ground2.position.x - 2, 0);
-    }
 
     if (_ground1.position.x <= -self.frame.size.width) {
         _ground1.position = CGPointMake(self.frame.size.width, 0);
@@ -239,6 +238,7 @@
             _dokanTimer = 0;
         }
         _previousTime = currentTime;
+    }
     }
 }
 
